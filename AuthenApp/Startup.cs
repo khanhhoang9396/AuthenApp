@@ -35,44 +35,8 @@ namespace AuthenApp
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthenApp", Version = "v1" });
-                c.AddSecurityDefinition("Bearer,", new OpenApiSecurityScheme
-                {
-                    Description = "Please insert your JWT Token into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    In = ParameterLocation.Header,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT"
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement{
-                    {
-                        new OpenApiSecurityScheme{
-                            Reference = new OpenApiReference{
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[]{}
-                    }
-                });
+               
             });
-
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-                    option =>
-                    {
-                        option.SaveToken = true;
-                        option.TokenValidationParameters = new TokenValidationParameters
-                        {
-                            ValidateIssuer = false,
-                            ValidateAudience = false,
-                            ValidateIssuerSigningKey = true,
-                            ValidateLifetime = true,
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKey1234567"))
-                        };
-
-                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline. 
@@ -91,7 +55,7 @@ namespace AuthenApp
 
             app.UseAuthentication();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

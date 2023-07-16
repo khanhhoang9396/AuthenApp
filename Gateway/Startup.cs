@@ -12,6 +12,8 @@ using Ocelot.Middleware;
 using System;
 using System.Security.Claims;
 using System.Text;
+using Ocelot.DependencyInjection;
+using Ocelot.Values;
 
 namespace Gateway
 {
@@ -29,7 +31,7 @@ namespace Gateway
         {
 
             services.AddControllers();
-
+            services.AddOcelot(Configuration);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthenApp", Version = "v1" });

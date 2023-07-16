@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AuthenApp.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -25,7 +24,7 @@ namespace AuthenApp.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("GetServices")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
