@@ -79,7 +79,7 @@ namespace AuthenApp.Controllers
                 new(nameof(user.Gender),user.Gender ),
                 new(ClaimTypes.DateOfBirth, user.BirthDay),
                 new(nameof(user.Country),user.Country ),
-                new(ClaimTypes.Role,user.Role )
+                new("Role",user.Role )
             };
             return claims;
         }

@@ -9,17 +9,18 @@ using Microsoft.AspNetCore.Authorization;
 namespace AuthenApp.Controllers
 {
     [ApiController]
+    //[Authorize]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class ServicesController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ServicesController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public ServicesController(ILogger<ServicesController> logger)
         {
             _logger = logger;
         }

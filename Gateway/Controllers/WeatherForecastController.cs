@@ -55,7 +55,7 @@ namespace Gateway.Controllers
 
 
         [HttpGet("GetWithRoleManager")]
-        [Authorize(Roles = "Manager")]
+        [Authorize("Manager")]
         public IEnumerable<WeatherForecast> GetManager()
         {
             var rng = new Random();

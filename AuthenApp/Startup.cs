@@ -37,6 +37,22 @@ namespace AuthenApp
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthenApp", Version = "v1" });
                
             });
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //  .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+            //      option =>
+            //      {
+            //          option.SaveToken = true;
+            //          option.TokenValidationParameters = new TokenValidationParameters
+            //          {
+            //              ValidateIssuer = true,
+            //              ValidIssuer = "https://localhost:44389/",
+            //              ValidateAudience = false,
+            //              ValidateIssuerSigningKey = true,
+            //              ValidateLifetime = true,
+            //              IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKey1234567")),
+            //              ClockSkew = TimeSpan.Zero
+            //          };
+            //      });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline. 

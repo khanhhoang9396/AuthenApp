@@ -1,16 +1,22 @@
 {
   "Routes": [
     {
-      "UpstreamPathTemplate": "/services",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-      "DownstreamPathTemplate": "/",
+      "UpstreamPathTemplate": "/servicesApi/{url}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 50901
         }
-      ]
+      ]//,
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer"
+      //},
+      //"RouteClaimsRequirement": {
+      //  "Role": "Manager"
+      //}
     }
   ],
   "GlobalConfiguration": {

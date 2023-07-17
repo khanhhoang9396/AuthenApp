@@ -19,9 +19,15 @@ namespace Gateway
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(hostEnvironment.ContentRootPath)
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
+            .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -78,6 +84,10 @@ namespace Gateway
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(
+                   "Manager",
+                   policy => policy.RequireClaim("Role", "Manager")
+               );
+                options.AddPolicy(
                     "VietNam",
                     policy => policy.RequireClaim("Country", "VN")
                 );
@@ -113,6 +123,8 @@ namespace Gateway
 
             app.UseHttpsRedirection();
 
+            app.UseDefaultFiles();
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -124,7 +136,7 @@ namespace Gateway
                 endpoints.MapControllers();
             });
 
-            app.UseOcelot();
+            app.UseOcelot().Wait();
 
         }
     }
